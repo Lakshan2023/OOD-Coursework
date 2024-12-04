@@ -55,8 +55,9 @@ public class EventManager implements EventValidator {
     @Override
     public boolean validateEventType(String EventType) {
         // return true if the event type is not "None"
-        return (EventType.equals("None"));
+        return (EventType == null || EventType.equals("None"));
     }
+
 
     // Override method from EventValidator interface to validate event delivery type
     @Override
@@ -155,6 +156,8 @@ public class EventManager implements EventValidator {
             if(status.equals("create")){
                 // if it is club creation calling the create club method from club advisor class
                 ClubAdvisor clubAdvisor = new ClubAdvisor();
+
+                // Event scheduling sequence : 1.1.1.1 : createEvent()
                 clubAdvisor.createEvent(eventName,eventLocation, eventType, eventDeliveryType, eventDate,
                         eventTime,clubName, eventDescription);
                 // If the process is successful return true
